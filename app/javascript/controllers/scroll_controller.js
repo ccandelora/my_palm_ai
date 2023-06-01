@@ -6,17 +6,19 @@ export default class extends Controller {
 
   connect() {
     console.log("Hello, Stimulus!", this.element);
-    this,scrollToBottom();
+    this.scrollToBottom();
     this.registerMutationObserver();
-
   }
 
   scrollToBottom() {
-  const containerHeight = this.responsesTarget.clientHeight;
-  const contentHeight = this.responsesTarget.scrollHeight;
-  const scrollPosition = this.responsesTarget.scrollTop;
+    const containerHeight = this.responsesTarget.clientHeight;
+    const contentHeight = this.responsesTarget.scrollHeight;
+    const scrollPosition = this.responsesTarget.scrollTop;
 
-    if ( contentHeight > containerHeight && scrollPosition < contentHeight - containerHeight ) {
+    if (
+      contentHeight > containerHeight &&
+      scrollPosition < contentHeight - containerHeight
+    ) {
       this.responsesTarget.scrollTop = contentHeight - containerHeight;
     }
   }
@@ -26,7 +28,7 @@ export default class extends Controller {
       this.scrollToBottom();
     });
 
-    observer.observe(this.responsesTarget, { 
+    observer.observe(this.responsesTarget, {
       childList: true,
     });
   }
